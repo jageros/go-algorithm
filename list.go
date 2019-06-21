@@ -21,7 +21,7 @@ func (l *lNode) print() {
 	fmt.Println()
 }
 
-func (l *lNode) insertReverseOrder() {
+func (l *lNode) reverseInsert() {
 	if l.next == nil {
 		return
 	}
@@ -47,16 +47,28 @@ func (l *lNode) reverseOnSpot() {
 	l.next = pre
 }
 
+func (l *lNode) reverseRecursive() {
+	if l.next == nil {
+		return
+	}
+	p := l.next
+	p.reverseRecursive()
+	l.next = p
+}
+
 func main() {
 	l := &lNode{}
 	p := l
-	for i := 0; i < 300; i += 10 {
+	for i := 0; i < 100; i += 10 {
 		p.newNextNode(i)
 		p = p.next
+		l.data += 1
 	}
 	l.print()
-	l.insertReverseOrder()
+	l.reverseInsert()
 	l.print()
 	l.reverseOnSpot()
+	l.print()
+	l.reverseRecursive()
 	l.print()
 }
