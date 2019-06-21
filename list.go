@@ -35,6 +35,18 @@ func (l *lNode) insertReverseOrder() {
 	}
 }
 
+func (l *lNode) reverseOnSpot() {
+	var pre *lNode
+	cur := l.next
+	for cur != nil {
+		next := cur.next
+		cur.next = pre
+		pre = cur
+		cur = next
+	}
+	l.next = pre
+}
+
 func main() {
 	l := &lNode{}
 	p := l
@@ -44,5 +56,7 @@ func main() {
 	}
 	l.print()
 	l.insertReverseOrder()
+	l.print()
+	l.reverseOnSpot()
 	l.print()
 }
