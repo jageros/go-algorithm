@@ -47,13 +47,27 @@ func (l *lNode) reverseOnSpot() {
 	l.next = pre
 }
 
-func (l *lNode) reverseRecursive() {
+func (l *lNode) reverseRecursive() *lNode {
 	if l.next == nil {
+		return l
+	}
+	h := l.next.reverseRecursive()
+	l.next.next = l
+	l.next = nil
+	return h
+}
+
+func (l *lNode) reverse() {
+	l.next = l.next.reverseRecursive()
+}
+
+func (l *lNode) reversePrint() {
+	if l.next == nil {
+		fmt.Print(l.data, " ")
 		return
 	}
-	p := l.next
-	p.reverseRecursive()
-	l.next = p
+	l.next.reversePrint()
+	fmt.Print(l.data, " ")
 }
 
 func main() {
@@ -69,6 +83,10 @@ func main() {
 	l.print()
 	l.reverseOnSpot()
 	l.print()
-	l.reverseRecursive()
+	l.reverse()
+
 	l.print()
+	fmt.Println("List len =", l.data)
+	l.next.reversePrint()
+	fmt.Println()
 }
