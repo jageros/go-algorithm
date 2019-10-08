@@ -1,15 +1,14 @@
 package main
 
-//aaaaa
 import (
 	"fmt"
 	"time"
 )
 
 func main() {
-	t := "2019-07-04 19:45:00"
+	t := "2019-10-08 16:46:00"
 	loc, _ := time.LoadLocation("Local")
-	tim, err := time.ParseiInLocation("2006-01-02 15:04:05", t, loc)
+	tim, err := time.ParseInLocation("2006-01-02 15:04:05", t, loc)
 	if err != nil {
 		fmt.Printf("Error: %s", err.Error())
 	}

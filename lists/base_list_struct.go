@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
 
 type lNode struct {
 	data int
@@ -8,7 +12,7 @@ type lNode struct {
 }
 
 func (l *lNode) newNextNode(data int) {
-	l.next = &lNode{data:data}
+	l.next = &lNode{data: data}
 }
 
 func (l *lNode) print() {
@@ -21,11 +25,13 @@ func (l *lNode) print() {
 	fmt.Println()
 }
 
-func newList() *lNode {
+func newList(length int) *lNode {
 	l := &lNode{}
 	p := l
-	for i := 0; i < 100; i += 10 {
-		p.newNextNode(i)
+	rand.Seed(time.Now().Unix())
+	for i := 0; i < length; i++ {
+		num := rand.Int() % 1000
+		p.newNextNode(num)
 		p = p.next
 		l.data += 1
 	}

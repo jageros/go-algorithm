@@ -8,7 +8,7 @@ func (l *lNode) duplicateRemove() {
 }
 
 func main() {
-	l := newList()
+	l := newList(10)
 	l.duplicateRemove()
 	l.print()
 }
