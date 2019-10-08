@@ -52,7 +52,7 @@ func (l *lNode) reversePrint() {
 }
 
 func main() {
-	l := newList(50)
+	l := newList(10, 30)
 	l.print()
 	l.reverseInsert()
 	l.print()

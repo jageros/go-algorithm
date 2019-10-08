@@ -15,6 +15,17 @@ func (l *lNode) newNextNode(data int) {
 	l.next = &lNode{data: data}
 }
 
+func (l *lNode) forEachData(f func(data int) bool) {
+	ctn := f(l.data)
+	if !ctn {
+		return
+	}
+	if l.next == nil {
+		return
+	}
+	l.next.forEachData(f)
+}
+
 func (l *lNode) print() {
 	fmt.Printf("List len = %d\n", l.data)
 	p := l.next
@@ -25,12 +36,12 @@ func (l *lNode) print() {
 	fmt.Println()
 }
 
-func newList(length int) *lNode {
+func newList(ltFigure, length int) *lNode {
 	l := &lNode{}
 	p := l
 	rand.Seed(time.Now().Unix())
 	for i := 0; i < length; i++ {
-		num := rand.Int() % 1000
+		num := rand.Int() % ltFigure
 		p.newNextNode(num)
 		p = p.next
 		l.data += 1
