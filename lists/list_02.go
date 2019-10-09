@@ -1,22 +1,25 @@
 package main
 
-func (l *lNode) duplicateRemove() {
-	if l.next == nil {
+func duplicateRemove(l *lNode) {
+	if l == nil {
 		return
 	}
-	l.next.forEachData(func(data int) bool {
-		if l.data == data {
-			l.data = 0
+	q := l
+	p := l.next
+	for p != nil {
+		if p.data == l.data {
+			q.next = p.next
+		}else {
+			q = p
 		}
-		return true
-	})
-
-	l.next.duplicateRemove()
+		p = q.next
+	}
+	duplicateRemove(l.next)
 }
 
 func main() {
-	l := newList(10, 20)
+	l := newList(5, 30)
 	l.print()
-	l.next.duplicateRemove()
+	duplicateRemove(l.p)
 	l.print()
 }
